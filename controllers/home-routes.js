@@ -10,6 +10,22 @@ router.get('/', async (req, res) => {
   }
 });
 
+router.get('/comment', async (req, res) => {
+  try {
+    res.render('comment');
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+router.get('/profile', async (req, res) => {
+  try {
+    res.render('profile');
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 router.get('/login', (req, res) => {
   if (req.session.loggedIn) {
     res.redirect('/');
@@ -27,5 +43,6 @@ router.get('/signup', (req, res) => {
 
   res.render('signup');
 });
+
 
 module.exports = router;

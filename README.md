@@ -1,1 +1,1 @@
-# The-Tech-Blog
+# The-Wimpy-Programmer-Blog
