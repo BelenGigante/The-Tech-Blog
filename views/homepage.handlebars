@@ -1,1 +1,14 @@
-<h1>Homepage</h1>
+<h1>homepage</h1>
+{{#each posts as |post|}}
+<h2>
+    <a href="/post/{{post.id}}">{{post.subject}}</a>
+</h2>
+<div>
+    <p>
+        {{post.comment}}
+    </p>
+</div>
+<div>
+    <p>Posted by: {{post.user.username}}</p>
+</div>
+{{/each}}

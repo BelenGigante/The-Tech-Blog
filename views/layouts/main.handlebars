@@ -8,10 +8,22 @@
 </head>
 
 <body>
+  <header>
+    <h1>The Wimpy Programmer Blog</h1>
+    <nav>
+      {{#if logged_in}}
+      <a href="/profile">profile</a> |
+      <button class="no-button" id="logout">logout</button>
+      {{else}}
+      <a href="/login">login</a>
+      {{/if}}
+    </nav>
+  </header>
   <main>
     {{{body}}}
   </main>
+    {{#if logged_in}}
+  <script src="/js/logout.js"></script>
+  {{/if}}
 </body>
-
 </html>
-<script src="/js/logout.js"></script>
