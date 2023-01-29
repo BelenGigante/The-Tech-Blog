@@ -24,16 +24,6 @@ Post.hasOne(Blog,{
 });
 
 
-
-
-
-
-
-
-
-
-
-
 module.exports = {
   User,
   Post,
