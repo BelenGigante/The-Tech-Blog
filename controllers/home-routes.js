@@ -9,16 +9,16 @@ router.get('/', async (req, res) => {
       include: [
         {
           model: User,
-          attributes: ['subject'],
+          attributes: ['username'],
         },
       ],
     });
-    const posts= postData.map((post) => post.get({plain: true}));
+    const posts = postData.map((post) => post.get({ plain: true }));
     res.render('homepage', {
       posts,
       loggedIn: req.session.loggedIn
     });
-  }catch (err) {
+  } catch (err) {
     res.status(500).json(err);
   }
 });
@@ -33,9 +33,30 @@ router.get('/post/:id', async (req, res) => {
         },
       ],
     });
-    const post = postData.get({plain: true});
-    res.render('post',{
+    const post = postData.get({ plain: true });
+    res.render('post', {
       ...post,
+      loggedIn: req.session.loggedIn
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+router.get('/user/:id', async (req, res) => {
+  try {
+    const userData = await User.findByPk(req.params.id, {
+      include: [
+        {
+          model: Post,
+          attributes: ['subject', 'comment'],
+        },
+      ],
+    });
+    console.log(req.params.id);
+    const user = userData.get({ plain: true });
+    res.render('userposts', {
+      ...user,
       loggedIn: req.session.loggedIn
     });
   } catch (err) {
@@ -45,15 +66,15 @@ router.get('/post/:id', async (req, res) => {
 
 router.get('/profile', withAuth, async (req, res) => {
   try {
-  const userData = await User.findByPk(req.session.user_id, {
-    attributes: {exclude:['password']},
-    include: [{model: Project}],
-  });
-  const user = userData.get({plain:true});
-  res.render('profile', {
-    ...user,
-    loggedIn: true
-  });
+    const userData = await User.findByPk(req.session.user_id, {
+      attributes: { exclude: ['password'] },
+      include: [{ model: Project }],
+    });
+    const user = userData.get({ plain: true });
+    res.render('profile', {
+      ...user,
+      loggedIn: true
+    });
   } catch (err) {
     res.status(500).json(err);
   }

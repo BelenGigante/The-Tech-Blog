@@ -14,8 +14,24 @@ const newFormHandler = async (event) => {
         if (response.ok) {
             document.location.replace('profile');
         } else {
-            alert('Error creating project');
+            alert('Error creating post');
         }
     }
 
 };
+const delButtonHandler = async (event) => {
+    if(event.target.hasAttribute('data-id')){
+        const id = event.target.getAttribute('data-id');
+        const response = await fectch(`/api/posts/${id}`, {
+            method:'DELETE',
+        });
+        if (response.ok){
+            document.location.replace('/profile');
+        } else{
+            alert('Post cant be deleted')
+        }
+    }
+};
+
+document.querySelector('.new-post-form').addEventListener('submit', newFormHandler);
+document.querySelector('.post-list').addEventListener('click', delButtonHandler);

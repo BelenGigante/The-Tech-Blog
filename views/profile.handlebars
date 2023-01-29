@@ -17,9 +17,9 @@
 </form>
 </div>
 {{#if posts.lenght}}
-<div>
+<div class="post-list">
     <h3>All {{user.username}} contributions</h3>
-    {{#each}}
+    {{#each posts as |post|}}
     <div>
         <h4><a href="/post/{{post.id}}">{{post.subject}}</a></h4>
     </div>
