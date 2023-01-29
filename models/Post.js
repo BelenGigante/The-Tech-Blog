@@ -15,23 +15,23 @@ Post.init(
         subject: {
             type: DataTypes.STRING,
             allowNull: false,
-            validate: {
-                len: [40]
-            }
+            // validate: {
+            //     len: [40],
+            // },
         },
         comment: {
             type: DataTypes.STRING,
             allowNull: false,
-            validate: {
-                len: [450]
-            }
+            // validate: {
+            //     len: [450],
+            // },
         },
         user_id: {
             type: DataTypes.INTEGER,
             references: {
                 model: 'user',
                 key: 'id',
-            }
+            },
         },
        
     },

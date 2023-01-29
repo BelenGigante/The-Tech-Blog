@@ -6,7 +6,7 @@ const postData = require('./post.json');
 
 const init = async () => {
   await sequelize.sync({ force: true });
-  const users = await User.bulkCreate(userData, {
+  await User.bulkCreate(userData, {
     individualHooks: true,
     returning: true,
   });
@@ -14,7 +14,6 @@ const init = async () => {
   for (const post of postData) {
     await Post.create({
       ...post,
-      user_id: users[Math.floor(Math.random() * users.length)].id,
     });
   }
 

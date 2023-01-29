@@ -1,14 +1,17 @@
 [
     {
-        "Username":"Jane",
-        "Password":"Jane123"
+        "id":1,
+        "username":"Jane",
+        "password":"Jane123"
     },
     {
-        "Username":"John",
-        "Password":"John123"
+        "id":2,
+        "username":"John",
+        "password":"John123"
     },
     {
-        "Username":"Peter",
-        "Password":"Peter123"
+        "id":3,
+        "username":"Peter",
+        "password":"Peter123"
     }
 ]
