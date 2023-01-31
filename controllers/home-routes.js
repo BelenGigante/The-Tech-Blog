@@ -43,36 +43,16 @@ router.get('/post/:id', async (req, res) => {
   }
 });
 
-router.get('/user/:id', async (req, res) => {
-  try {
-    const userData = await User.findByPk(req.params.id, {
-      include: [
-        {
-          model: Post,
-          attributes: ['subject', 'comment'],
-        },
-      ],
-    });
-    console.log(req.params.id);
-    const user = userData.get({ plain: true });
-    res.render('userposts', {
-      ...user,
-      loggedIn: req.session.loggedIn
-    });
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
 
-router.get('/profile', withAuth, async (req, res) => {
+router.get('/user/:id', withAuth, async (req, res) => {
   try {
     const userData = await User.findByPk(req.session.user_id, {
       attributes: { exclude: ['password'] },
-      include: [{ model: Project }],
+      include: [{ model: Post }],
     });
     const user = userData.get({ plain: true });
     res.render('profile', {
-      ...user,
+      user,
       loggedIn: true
     });
   } catch (err) {
@@ -82,7 +62,7 @@ router.get('/profile', withAuth, async (req, res) => {
 
 router.get('/login', (req, res) => {
   if (req.session.loggedIn) {
-    res.redirect('/profile');
+    res.redirect('/');
     return;
   }
 

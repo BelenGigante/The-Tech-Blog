@@ -11,7 +11,7 @@
   <header>
     <h1>The Wimpy Programmer Blog</h1>
     <nav>
-      {{#if logged_in}}
+      {{#if loggedIn}}
       <a href="/profile">profile</a> |
       <button class="no-button" id="logout">logout</button>
       {{else}}
@@ -22,7 +22,7 @@
   <main>
     {{{body}}}
   </main>
-    {{#if logged_in}}
+    {{#if loggedIn}}
   <script src="/js/logout.js"></script>
   {{/if}}
 </body>

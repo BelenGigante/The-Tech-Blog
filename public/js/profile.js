@@ -4,7 +4,7 @@ const newFormHandler = async (event) => {
     const comment = document.querySelector('#post-comment').value.trim();
 
     if (subject && comment) {
-        const response = await fetch('api/post', {
+        const response = await fetch(`api/posts`, {
             method: 'POST',
             body: JSON.stringify({ subject, comment }),
             headers: {
@@ -12,7 +12,7 @@ const newFormHandler = async (event) => {
             },
         });
         if (response.ok) {
-            document.location.replace('profile');
+            document.location.replace('/profile');
         } else {
             alert('Error creating post');
         }
